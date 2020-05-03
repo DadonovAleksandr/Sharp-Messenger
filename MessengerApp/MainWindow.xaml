@@ -5,8 +5,86 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MessengerApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Messenger" Height="450" Width="400" MaxHeight="800" MaxWidth="800" MinHeight="450" MinWidth="400" Background="#222" Foreground="#f6f6f6">
+	<Window.Resources>
+		<Style x:Key="Screen">
+			<Style.Setters>
+				<Setter Property="Border.Visibility" Value="Hidden" />
+				<Setter Property="Border.Background" Value="#222" />
+				<Setter Property="Border.Padding" Value="5" />
+			</Style.Setters>
+		</Style>
 
-    </Grid>
+		<Style x:Key="LoginPanel">
+			<Style.Setters>
+				<Setter Property="StackPanel.Orientation" Value="Vertical" />
+				<Setter Property="StackPanel.VerticalAlignment" Value="Center" />
+			</Style.Setters>
+		</Style>
+
+		<Style x:Key="TextBox">
+			<Style.Setters>
+				<Setter Property="TextBox.Background" Value="#333" />
+				<Setter Property="TextBox.Foreground" Value="#f6f6f6" />
+				<Setter Property="TextBox.Margin" Value="5"/>
+				<Setter Property="TextBox.Padding" Value="15 10"/>
+				<Setter Property="TextBox.HorizontalAlignment" Value="Center" />
+				<Setter Property="TextBox.Width" Value="250" />
+			</Style.Setters>
+		</Style>
+
+		<Style x:Key="TextBlockBase">
+			<Style.Setters>
+				<Setter Property="TextBlock.Padding" Value="5"/>
+				<Setter Property="TextBlock.Margin" Value="5" />
+				<Setter Property="TextBlock.Foreground" Value="#f6f6f6" />
+				<Setter Property="TextBlock.FontSize" Value="14" />
+			</Style.Setters>
+		</Style>
+
+		<Style x:Key="HeaderBlock" BasedOn="{StaticResource TextBlockBase}">
+			<Style.Setters>
+				<Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+				<Setter Property="TextBlock.FontWeight" Value="Bold" />
+				<Setter Property="TextBlock.FontSize" Value="18" />
+			</Style.Setters>
+		</Style>
+
+		<Style x:Key="WarningBlock" BasedOn="{StaticResource TextBlockBase}">
+			<Style.Setters>
+				<Setter Property="TextBlock.Foreground" Value="Red" />
+				<Setter Property="TextBlock.HorizontalAlignment" Value="Center"/>
+			</Style.Setters>
+		</Style>
+
+		<Style x:Key="ButtonBase" >
+			<Style.Setters>
+				<Setter Property="Button.Background" Value="#333" />
+				<Setter Property="Button.Foreground" Value="#f6f6f6" />
+				<Setter Property="Button.Margin" Value="5"/>
+				<Setter Property="Button.Padding" Value="50 10"/>
+				<Setter Property="Button.HorizontalAlignment" Value="Center" />
+				<Setter Property="Button.FontSize" Value="14" />
+			</Style.Setters>
+		</Style>
+	</Window.Resources>
+    <Grid>
+		<Border Style="{StaticResource Screen}" Name="LoginScreen" Visibility="Visible">
+			<StackPanel Style="{StaticResource LoginPanel}">
+				<TextBlock Text="Login" Style="{StaticResource HeaderBlock}" />
+				<TextBox Style="{StaticResource TextBox}" Name="LoginBox" />
+				<PasswordBox Style="{StaticResource TextBox}" Name="PasswordBox"/>
+				<Button Content="Enter" Style="{StaticResource ButtonBase}" Name="LoginButton" Click="LoginButton_Click" IsDefault="True"/>
+				<TextBlock Text="" Name="LoginMessageBlock" Style="{StaticResource WarningBlock}" Visibility="Hidden"/>
+			</StackPanel>
+		</Border>
+
+		<Border Name="ContactsScreen" Style="{StaticResource Screen}">
+			<TextBlock Text="Contacts" />
+		</Border>
+
+		<Border Name="ChatScreen" Style="{StaticResource Screen}">
+			<TextBlock Text="Chat" />
+		</Border>
+	</Grid>
 </Window>
