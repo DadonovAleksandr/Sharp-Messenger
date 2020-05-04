@@ -30,7 +30,7 @@ namespace MessengerApp
 
 		private void LoginButton_Click(object sender, RoutedEventArgs e)
 		{
-			if(LoginBox.Text == login && PasswordBox.Password == password)
+			if(Login(login, password))
 			{
 				ChangeScreen(ContactsScreen);
 			}
@@ -38,6 +38,18 @@ namespace MessengerApp
 			{
 				LoginMessageBlock.Text = "Wrong login or password!";
 				LoginMessageBlock.Visibility = Visibility.Visible;
+			}
+		}
+
+		private bool Login(string login, string password)
+		{
+			if(LoginBox.Text == login && PasswordBox.Password == password)
+			{
+				return true;
+			} 
+			else
+			{
+				return false;
 			}
 		}
 
