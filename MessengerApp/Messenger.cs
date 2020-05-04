@@ -59,7 +59,7 @@ namespace MessengerApp
 		private void LoadUsers()
 		{
 			users.Add(new User(1, "Evgenii", ""));
-			users.Add(new User(2, "Ivan", ""));
+			users.Add(new User(2, "Victoria", ""));
 			users.Add(new User(3, "John", ""));
 			users.Add(new User(4, "Boris", ""));
 			users.Add(new User(5, "Igor", ""));
@@ -68,14 +68,17 @@ namespace MessengerApp
 		private void LoadMessages()
 		{
 			//Contact 1
-			messages.Add(new Message("Hello!", users[0], users[1], user.ID));
+			messages.Add(new Message("Hi!", users[0], users[1], user.ID));
 			messages.Add(new Message("Hello.", users[1], users[0], user.ID));
 			messages.Add(new Message("How are you?", users[0], users[1], user.ID));
 			messages.Add(new Message("Fine.", users[1], users[0], user.ID));
-			messages.Add(new Message("Are you okay?", users[0], users[1], user.ID));
+			messages.Add(new Message("Is everything okay?", users[0], users[1], user.ID));
+			messages.Add(new Message("Yes.", users[1], users[0], user.ID));
+			messages.Add(new Message("Are you sure?", users[0], users[1], user.ID));
 			messages.Add(new Message("Yes.", users[1], users[0], user.ID));
 			messages.Add(new Message("If you say so...", users[0], users[1], user.ID));
-			messages.Add(new Message("Ah! You don't care about me!", users[1], users[0], user.ID));
+			messages.Add(new Message("Ah! You never cared about me!", users[1], users[0], user.ID));
+			messages.Add(new Message("Forget my number!", users[1], users[0], user.ID));
 			messages.Add(new Message("...", users[0], users[1], user.ID));
 
 			//Contact 2

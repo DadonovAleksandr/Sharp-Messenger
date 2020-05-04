@@ -65,6 +65,7 @@ namespace MessengerApp
 				app.LoadChat();
 
 				MessagesList.ItemsSource = app.Chat;
+				ChatName.Text = app.CurrentContact.Name;
 
 				Open(ChatScreen);
 			}

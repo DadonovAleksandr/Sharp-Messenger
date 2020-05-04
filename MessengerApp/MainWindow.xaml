@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MessengerApp"
         mc:Ignorable="d"
-        Title="Messenger" Height="550" Width="400" MaxHeight="800" MaxWidth="800" MinHeight="450" MinWidth="400" Background="#222" Foreground="#f6f6f6">
+        Title="Messenger" Height="550" Width="400" MaxHeight="900" MaxWidth="800" MinHeight="450" MinWidth="400" Background="#222" Foreground="#f6f6f6">
 	<Window.Resources>
 		<Style x:Key="Screen">
 			<Style.Setters>
@@ -112,18 +112,22 @@
 				<Setter Property="Border.CornerRadius" Value="13" />
 				<Setter Property="Border.MinWidth" Value="100" />
 				<Setter Property="Border.MaxWidth" Value="300" />
+				<Setter Property="Border.Padding" Value="2" />
 			</Style.Setters>
 		</Style>
 
 		<Style x:Key="MessageText" BasedOn="{StaticResource TextBlockBase}">
 			<Style.Setters>
 				<Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+				<Setter Property="TextBlock.Margin" Value="0" />
 			</Style.Setters>
 		</Style>
 
 		<Style x:Key="MessageDate" BasedOn="{StaticResource TextBlockBase}">
 			<Style.Setters>
-
+				<Setter Property="TextBlock.HorizontalAlignment" Value="Right" />
+				<Setter Property="TextBlock.FontSize" Value="8" />
+				<Setter Property="TextBlock.Margin" Value="0" />
 			</Style.Setters>
 		</Style>
 	</Window.Resources>
@@ -197,19 +201,17 @@
 
 				<Border Grid.Row="1">
 					<ListBox ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" 
-							 Style="{StaticResource ContactsList}" Name="MessagesList" SelectionChanged="ContactsList_SelectionChanged">
+							 Style="{StaticResource ContactsList}" Name="MessagesList" Focusable="False"
+							 HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
 								<ListBoxItem>
-									<DockPanel LastChildFill="False" HorizontalAlignment="Stretch">
-										<Border Style="{StaticResource MessageBorder}" DockPanel.Dock="{Binding Dock}">
-											<StackPanel Orientation="Vertical">
-												<TextBlock Text="{Binding Text}" Style="{StaticResource MessageText}"/>
-												<TextBlock Text="{Binding Date}" Style="{StaticResource MessageDate}"/>
-											</StackPanel>
-										</Border>
-									</DockPanel>
-
+									<Border Style="{StaticResource MessageBorder}" HorizontalAlignment="{Binding Alignment}">
+										<StackPanel Orientation="Vertical">
+											<TextBlock Text="{Binding Text}" Style="{StaticResource MessageText}"/>
+											<TextBlock Text="{Binding Date}" Style="{StaticResource MessageDate}"/>
+										</StackPanel>
+									</Border>
 								</ListBoxItem>
 							</DataTemplate>
 						</ListBox.ItemTemplate>

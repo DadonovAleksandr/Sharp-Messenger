@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Controls;
+using System.Windows;
 
 namespace MessengerApp
 {
@@ -10,7 +10,7 @@ namespace MessengerApp
 		private string text;
 		private User sender;
 		private User reciever;
-		private Dock dock;
+		private HorizontalAlignment alignment;
 		private DateTime date;
 
 		public Message(string text, User sender, User reciever, int id)
@@ -21,11 +21,11 @@ namespace MessengerApp
 
 			if(id == sender.ID)
 			{
-				dock = Dock.Right;
+				alignment = HorizontalAlignment.Right;
 			}
 			else
 			{
-				dock = Dock.Left;
+				alignment = HorizontalAlignment.Left;
 			}
 
 			date = new DateTime();
@@ -47,11 +47,11 @@ namespace MessengerApp
 			}
 		}
 
-		public Dock Dock
+		public HorizontalAlignment Alignment
 		{
 			get
 			{
-				return this.dock;
+				return this.alignment;
 			}
 		}
 
