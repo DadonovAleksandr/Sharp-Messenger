@@ -105,9 +105,30 @@
 				<Setter Property="Border.Background" Value="#222" />
 			</Style.Setters>
 		</Style>
+
+		<Style x:Key="MessageBorder">
+			<Style.Setters>
+				<Setter Property="Border.Background" Value="#555" />
+				<Setter Property="Border.CornerRadius" Value="13" />
+				<Setter Property="Border.MinWidth" Value="100" />
+				<Setter Property="Border.MaxWidth" Value="200" />
+			</Style.Setters>
+		</Style>
+
+		<Style x:Key="MessageText" BasedOn="{StaticResource TextBlockBase}">
+			<Style.Setters>
+
+			</Style.Setters>
+		</Style>
+
+		<Style x:Key="MessageDate" BasedOn="{StaticResource TextBlockBase}">
+			<Style.Setters>
+
+			</Style.Setters>
+		</Style>
 	</Window.Resources>
     <Grid>
-		<Border Style="{StaticResource Screen}" Name="LoginScreen">
+		<Border Style="{StaticResource Screen}" Name="LoginScreen" Visibility="Visible">
 			<StackPanel Style="{StaticResource LoginPanel}">
 				<TextBlock Text="Login" Style="{StaticResource HeaderBlock}" />
 				<TextBox Style="{StaticResource TextBoxBase}" Name="LoginBox" />
@@ -127,6 +148,7 @@
 				<Border Grid.Row="0" Style="{StaticResource HeaderBorder}">
 					<TextBlock Style="{StaticResource HeaderBlock}" Text="Contacts" VerticalAlignment="Center"/>
 				</Border>
+				
 				<Border Grid.Row="1">
 					<ListBox ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" 
 							 Style="{StaticResource ContactsList}" Name="ContactsList" SelectionChanged="ContactsList_SelectionChanged">
@@ -135,7 +157,7 @@
 								<ListBoxItem>
 									<DockPanel LastChildFill="True">
 										<Image Style="{StaticResource ContactImage}" DockPanel.Dock="Left"></Image>
-										<TextBlock Text="{Binding Name}" Style="{StaticResource ContactName}"  DockPanel.Dock="Right"/>
+										<TextBlock Text="{Binding Name}" Style="{StaticResource ContactName}" DockPanel.Dock="Right"/>
 									</DockPanel>
 								</ListBoxItem>
 							</DataTemplate>
@@ -147,7 +169,7 @@
 			
 		</Border>
 
-		<Border Name="ChatScreen" Style="{StaticResource Screen}" Visibility="Visible">
+		<Border Name="ChatScreen" Style="{StaticResource Screen}">
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="50" />
@@ -171,6 +193,27 @@
 						
 					</Grid>
 					
+				</Border>
+
+				<Border Grid.Row="1">
+					<ListBox ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" 
+							 Style="{StaticResource ContactsList}" Name="MessagesList" SelectionChanged="ContactsList_SelectionChanged">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<ListBoxItem>
+									<DockPanel LastChildFill="False" HorizontalAlignment="Stretch">
+										<Border Style="{StaticResource MessageBorder}" DockPanel.Dock="{Binding Dock}">
+											<StackPanel Orientation="Vertical">
+												<TextBlock Text="{Binding Text}" Style="{StaticResource MessageText}"/>
+												<TextBlock Text="{Binding Date}" Style="{StaticResource MessageDate}"/>
+											</StackPanel>
+										</Border>
+									</DockPanel>
+
+								</ListBoxItem>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
 				</Border>
 
 				<Border Grid.Row="2" Style="{StaticResource HeaderBorder}">

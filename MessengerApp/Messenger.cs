@@ -40,8 +40,10 @@ namespace MessengerApp
 			if (this.login == login && this.password == password)
 			{
 				LoadUsers();
-				LoadMessages();
 				user = users[0];
+
+				LoadMessages();
+				
 
 				GetContacts();
 
@@ -66,25 +68,25 @@ namespace MessengerApp
 		private void LoadMessages()
 		{
 			//Contact 1
-			messages.Add(new Message("Hello!", users[0], users[1]));
-			messages.Add(new Message("Hello.", users[1], users[0]));
-			messages.Add(new Message("How are you?", users[0], users[1]));
-			messages.Add(new Message("Fine.", users[1], users[0]));
-			messages.Add(new Message("Are you okay?", users[0], users[1]));
-			messages.Add(new Message("Yes.", users[1], users[0]));
-			messages.Add(new Message("If you say so...", users[0], users[1]));
-			messages.Add(new Message("Ah! You don't care about me!", users[1], users[0]));
-			messages.Add(new Message("...", users[0], users[1]));
+			messages.Add(new Message("Hello!", users[0], users[1], user.ID));
+			messages.Add(new Message("Hello.", users[1], users[0], user.ID));
+			messages.Add(new Message("How are you?", users[0], users[1], user.ID));
+			messages.Add(new Message("Fine.", users[1], users[0], user.ID));
+			messages.Add(new Message("Are you okay?", users[0], users[1], user.ID));
+			messages.Add(new Message("Yes.", users[1], users[0], user.ID));
+			messages.Add(new Message("If you say so...", users[0], users[1], user.ID));
+			messages.Add(new Message("Ah! You don't care about me!", users[1], users[0], user.ID));
+			messages.Add(new Message("...", users[0], users[1], user.ID));
 
 			//Contact 2
-			messages.Add(new Message("Hello!", users[0], users[2]));
-			messages.Add(new Message("Hello!", users[2], users[0]));
+			messages.Add(new Message("Hello!", users[0], users[2], user.ID));
+			messages.Add(new Message("Hello!", users[2], users[0], user.ID));
 
 			//Contact 3
-			messages.Add(new Message("Hello! My name is John, would you like to see my goods?", users[3], users[0]));
-			messages.Add(new Message("Um... No, thank you.", users[0], users[3]));
-			messages.Add(new Message("Sad to hear it. Please contact me, if you change your mind.", users[3], users[0]));
-			messages.Add(new Message("I will.", users[0], users[3]));
+			messages.Add(new Message("Hello! My name is John, would you like to see my goods?", users[3], users[0], user.ID));
+			messages.Add(new Message("Um... No, thank you.", users[0], users[3], user.ID));
+			messages.Add(new Message("Sad to hear it. Please contact me, if you change your mind.", users[3], users[0], user.ID));
+			messages.Add(new Message("I will.", users[0], users[3], user.ID));
 		}
 
 		private void GetContacts()
@@ -115,6 +117,8 @@ namespace MessengerApp
 
 		public void LoadChat()
 		{
+			chat = new List<Message>();
+
 			foreach(Message message in messages)
 			{
 				if((currentContact.Users[0] == message.Reciever || currentContact.Users[1] == message.Reciever) 
@@ -128,6 +132,11 @@ namespace MessengerApp
 		public bool Send(Message message)
 		{
 			return true;
+		}
+
+		public void Update()
+		{
+
 		}
 
 		public User User

@@ -25,10 +25,10 @@ namespace MessengerApp
 		public MainWindow()
 		{
 			InitializeComponent();
-
 			app = new Messenger();
 
 			ContactsList.ItemsSource = app.Contacts;
+			MessagesList.ItemsSource = app.Chat;
 		}
 
 		private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -63,6 +63,9 @@ namespace MessengerApp
 				ContactsList.SelectedIndex = -1;
 
 				app.LoadChat();
+
+				MessagesList.ItemsSource = app.Chat;
+
 				Open(ChatScreen);
 			}
 			
@@ -70,7 +73,14 @@ namespace MessengerApp
 
 		private void SendButton_Click(object sender, RoutedEventArgs e)
 		{
+
 			string text = "";
+
+			if(!string.IsNullOrEmpty(MessageBox.Text))
+			{
+				
+				text = MessageBox.Text.Trim();
+			}
 
 			if(!string.IsNullOrEmpty(text))
 			{
@@ -85,13 +95,14 @@ namespace MessengerApp
 					reciever = app.CurrentContact.Users[1];
 				}
 
-				Message message = new Message(text, app.User, reciever);
+				Message message = new Message(text, app.User, reciever, app.User.ID);
 
 				bool result = app.Send(message);
 
 				if(result)
 				{
-					
+					MessageBox.Text = "";
+					app.Update();
 				}
 				
 			}
