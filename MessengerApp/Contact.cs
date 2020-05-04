@@ -7,10 +7,20 @@ namespace MessengerApp
 	class Contact
 	{
 		private User[] users;
+		private string name;
 
-		public Contact(User u1, User u2)
+		public Contact(User u1, User u2, int id)
 		{
 			users = new User[] { u1, u2 };
+
+			if(id == u1.ID)
+			{
+				this.name = u2.Name;
+			}
+			else
+			{
+				this.name = u1.Name;
+			}
 		}
 
 		public bool Confirm(User u1, User u2)
@@ -30,6 +40,14 @@ namespace MessengerApp
 			get
 			{
 				return users;
+			}
+		}
+
+		public string Name
+		{
+			get 
+			{
+				return this.name;
 			}
 		}
 	}

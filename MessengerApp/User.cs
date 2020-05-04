@@ -28,7 +28,7 @@ namespace MessengerApp
 		{
 			get
 			{
-				return this.ID;
+				return this.id;
 			}
 		}
 

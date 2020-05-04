@@ -37,7 +37,7 @@ namespace MessengerApp
 		{
 			get
 			{
-				return this.Reciever;
+				return this.reciever;
 			}
 		}
 	}

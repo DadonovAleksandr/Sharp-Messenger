@@ -6,8 +6,8 @@ namespace MessengerApp
 {
 	class Messenger
 	{
-		private string login;
-		private string password;
+		private string login = "admin";
+		private string password = "12345";
 
 		private List<User> users;
 		private List<Message> messages;
@@ -44,9 +44,11 @@ namespace MessengerApp
 			{
 				LoadUsers();
 				LoadMessages();
+				user = users[0];
+
 				GetContacts();
 
-				user = users[0];
+				
 				return true;
 			}
 			else
@@ -98,7 +100,7 @@ namespace MessengerApp
 
 				if(!getContact)
 				{
-					contacts.Add(new Contact(message.Sender, message.Reciever));
+					contacts.Add(new Contact(message.Sender, message.Reciever, user.ID));
 				}
 			}
 		}
@@ -116,11 +118,35 @@ namespace MessengerApp
 			}
 		}
 
+		public List<Contact> Contacts
+		{
+			get
+			{
+				return this.contacts;
+			}
+		}
+
 		public Contact CurrentContact
 		{
 			get
 			{
 				return this.currentContact;
+			}
+		}
+
+		public List<Message> Messages
+		{
+			get
+			{
+				return this.messages;
+			}
+		}
+
+		public List<Message> Chat
+		{
+			get
+			{
+				return this.chat;
 			}
 		}
 	}

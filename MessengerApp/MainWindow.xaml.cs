@@ -27,6 +27,8 @@ namespace MessengerApp
 			InitializeComponent();
 
 			app = new Messenger();
+
+			ContactsList.ItemsSource = app.Contacts;
 		}
 
 		private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -47,6 +49,8 @@ namespace MessengerApp
 			LoginScreen.Visibility = Visibility.Hidden;
 			ContactsScreen.Visibility = Visibility.Hidden;
 			ChatScreen.Visibility = Visibility.Hidden;
+
+			//ContactsList.DataContext = app.Contacts;
 
 			screen.Visibility = Visibility.Visible;
 		}
