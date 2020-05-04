@@ -111,13 +111,13 @@
 				<Setter Property="Border.Background" Value="#555" />
 				<Setter Property="Border.CornerRadius" Value="13" />
 				<Setter Property="Border.MinWidth" Value="100" />
-				<Setter Property="Border.MaxWidth" Value="200" />
+				<Setter Property="Border.MaxWidth" Value="300" />
 			</Style.Setters>
 		</Style>
 
 		<Style x:Key="MessageText" BasedOn="{StaticResource TextBlockBase}">
 			<Style.Setters>
-
+				<Setter Property="TextBlock.TextWrapping" Value="Wrap" />
 			</Style.Setters>
 		</Style>
 

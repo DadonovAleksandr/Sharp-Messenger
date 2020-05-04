@@ -47,6 +47,14 @@ namespace MessengerApp
 			}
 		}
 
+		public Dock Dock
+		{
+			get
+			{
+				return this.dock;
+			}
+		}
+
 		public User Sender
 		{
 			get
