@@ -34,12 +34,8 @@
 
 		<Style x:Key="MessageBox" BasedOn="{StaticResource TextBoxBase}" >
 			<Style.Setters>
-				<Setter Property="TextBox.Background" Value="#555" />
-				<Setter Property="TextBox.Foreground" Value="#f6f6f6" />
-				<Setter Property="TextBox.Margin" Value="5"/>
-				<Setter Property="TextBox.Padding" Value="15 10"/>
 				<Setter Property="TextBox.HorizontalAlignment" Value="Stretch" />
-				<Setter Property="TextBox.Width" Value="auto" />
+				<Setter Property="TextBox.Width" Value="Auto" />
 			</Style.Setters>
 		</Style>
 		
@@ -185,7 +181,7 @@
 							<ColumnDefinition Width="1*" />
 						</Grid.ColumnDefinitions>
 
-						<TextBlock Name="MessageBox" Style="{StaticResource MessageBox}" Grid.Column="0"/>
+						<TextBox Name="MessageBox" Style="{StaticResource MessageBox}" Grid.Column="0"/>
 						
 						<Button Style="{StaticResource NavButton}" Grid.Column="1" Name="SendButton" Content="→" Click="SendButton_Click"/>
 
