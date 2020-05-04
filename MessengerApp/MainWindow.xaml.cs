@@ -23,9 +23,13 @@ namespace MessengerApp
 
 		private string login = "admin";
 		private string password = "12345";
+
+		private List<Contact> contacts;
 		public MainWindow()
 		{
 			InitializeComponent();
+
+
 		}
 
 		private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -60,6 +64,11 @@ namespace MessengerApp
 			ChatScreen.Visibility = Visibility.Hidden;
 
 			screen.Visibility = Visibility.Visible;
+		}
+
+		private void ContactsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
 		}
 	}
 }

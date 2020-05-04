@@ -114,7 +114,8 @@
 					<TextBlock Style="{StaticResource HeaderBlock}" Text="Contacts" VerticalAlignment="Center"/>
 				</Border>
 				<Border Grid.Row="1">
-					<ListBox ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Style="{StaticResource ContactsList}">
+					<ListBox ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" 
+							 Style="{StaticResource ContactsList}" Name="ContactsList" SelectionChanged="ContactsList_SelectionChanged">
 						<ListBoxItem>
 							<DockPanel LastChildFill="True">
 								<Image Style="{StaticResource ContactImage}" DockPanel.Dock="Left"></Image>
