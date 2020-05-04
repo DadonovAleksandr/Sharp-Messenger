@@ -67,5 +67,45 @@ namespace MessengerApp
 			}
 			
 		}
+
+		private void SendButton_Click(object sender, RoutedEventArgs e)
+		{
+			string text = "";
+
+			if(!string.IsNullOrEmpty(text))
+			{
+				User reciever;
+
+				if (app.CurrentContact.Users[0].ID == app.User.ID)
+				{
+					reciever = app.CurrentContact.Users[0];
+				}
+				else
+				{
+					reciever = app.CurrentContact.Users[1];
+				}
+
+				Message message = new Message(text, app.User, reciever);
+
+				bool result = app.Send(message);
+
+				if(result)
+				{
+					
+				}
+				
+			}
+			else
+			{
+
+			}
+
+			
+		}
+
+		private void BackButton_Click(object sender, RoutedEventArgs e)
+		{
+			Open(ContactsScreen);
+		}
 	}
 }

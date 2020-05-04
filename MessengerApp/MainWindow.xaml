@@ -21,7 +21,7 @@
 			</Style.Setters>
 		</Style>
 
-		<Style x:Key="TextBox">
+		<Style x:Key="TextBoxBase">
 			<Style.Setters>
 				<Setter Property="TextBox.Background" Value="#333" />
 				<Setter Property="TextBox.Foreground" Value="#f6f6f6" />
@@ -32,6 +32,17 @@
 			</Style.Setters>
 		</Style>
 
+		<Style x:Key="MessageBox" BasedOn="{StaticResource TextBoxBase}" >
+			<Style.Setters>
+				<Setter Property="TextBox.Background" Value="#555" />
+				<Setter Property="TextBox.Foreground" Value="#f6f6f6" />
+				<Setter Property="TextBox.Margin" Value="5"/>
+				<Setter Property="TextBox.Padding" Value="15 10"/>
+				<Setter Property="TextBox.HorizontalAlignment" Value="Stretch" />
+				<Setter Property="TextBox.Width" Value="auto" />
+			</Style.Setters>
+		</Style>
+		
 		<Style x:Key="TextBlockBase">
 			<Style.Setters>
 				<Setter Property="TextBlock.Padding" Value="5"/>
@@ -67,6 +78,13 @@
 			</Style.Setters>
 		</Style>
 
+		<Style x:Key="NavButton" BasedOn="{StaticResource ButtonBase}">
+			<Style.Setters>
+				<Setter Property="Button.Padding" Value="2"/>
+				<Setter Property="Button.HorizontalAlignment" Value="Stretch" />
+			</Style.Setters>
+		</Style>
+		
 		<Style x:Key="ContactsList" BasedOn="{StaticResource TextBlockBase}">
 			<Style.Setters>
 				<Setter Property="ListBox.Background" Value="#151515"/>
@@ -93,11 +111,11 @@
 		</Style>
 	</Window.Resources>
     <Grid>
-		<Border Style="{StaticResource Screen}" Name="LoginScreen" Visibility="Visible">
+		<Border Style="{StaticResource Screen}" Name="LoginScreen">
 			<StackPanel Style="{StaticResource LoginPanel}">
 				<TextBlock Text="Login" Style="{StaticResource HeaderBlock}" />
-				<TextBox Style="{StaticResource TextBox}" Name="LoginBox" />
-				<PasswordBox Style="{StaticResource TextBox}" Name="PasswordBox"/>
+				<TextBox Style="{StaticResource TextBoxBase}" Name="LoginBox" />
+				<PasswordBox Style="{StaticResource TextBoxBase}" Name="PasswordBox"/>
 				<Button Content="Enter" Style="{StaticResource ButtonBase}" Name="LoginButton" Click="LoginButton_Click" IsDefault="True"/>
 				<TextBlock Text="" Name="LoginMessageBlock" Style="{StaticResource WarningBlock}" Visibility="Hidden"/>
 			</StackPanel>
@@ -133,8 +151,48 @@
 			
 		</Border>
 
-		<Border Name="ChatScreen" Style="{StaticResource Screen}">
-			<TextBlock Text="Chat"/>
+		<Border Name="ChatScreen" Style="{StaticResource Screen}" Visibility="Visible">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="50" />
+					<RowDefinition />
+					<RowDefinition Height="50"/>
+				</Grid.RowDefinitions>
+
+				<Border Grid.Row="0" Style="{StaticResource HeaderBorder}">
+					<Grid>
+
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1*" />
+							<ColumnDefinition Width="6*" />
+							<ColumnDefinition Width="1*" />
+						</Grid.ColumnDefinitions>
+
+						<Button Style="{StaticResource NavButton}" Grid.Column="0" Name="BackButton" Content="←" Click="BackButton_Click"/>
+
+						<TextBlock Style="{StaticResource HeaderBlock}" Text="" VerticalAlignment="Center" Name="ChatName" Grid.Column="1"/>
+						
+						
+					</Grid>
+					
+				</Border>
+
+				<Border Grid.Row="2" Style="{StaticResource HeaderBorder}">
+					<Grid>
+
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="6*" />
+							<ColumnDefinition Width="1*" />
+						</Grid.ColumnDefinitions>
+
+						<TextBlock Name="MessageBox" Style="{StaticResource MessageBox}" Grid.Column="0"/>
+						
+						<Button Style="{StaticResource NavButton}" Grid.Column="1" Name="SendButton" Content="→" Click="SendButton_Click"/>
+
+
+					</Grid>
+				</Border>
+			</Grid>
 		</Border>
 	</Grid>
 </Window>

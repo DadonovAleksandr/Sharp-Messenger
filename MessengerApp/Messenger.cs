@@ -24,6 +24,7 @@ namespace MessengerApp
 			users = new List<User>();
 			contacts = new List<Contact>();
 			messages = new List<Message>();
+			chat = new List<Message>();
 		}
 
 		public Messenger(List<Contact> contacts, List<Message> messages, List<User> users)
@@ -31,11 +32,7 @@ namespace MessengerApp
 			this.users = users;
 			this.contacts = contacts;
 			this.messages = messages;
-		}
-
-		public void LoadChat()
-		{
-
+			this.chat = new List<Message>();
 		}
 
 		public bool Login(string login, string password)
@@ -82,6 +79,12 @@ namespace MessengerApp
 			//Contact 2
 			messages.Add(new Message("Hello!", users[0], users[2]));
 			messages.Add(new Message("Hello!", users[2], users[0]));
+
+			//Contact 3
+			messages.Add(new Message("Hello! My name is John, would you like to see my goods?", users[3], users[0]));
+			messages.Add(new Message("Um... No, thank you.", users[0], users[3]));
+			messages.Add(new Message("Sad to hear it. Please contact me, if you change your mind.", users[3], users[0]));
+			messages.Add(new Message("I will.", users[0], users[3]));
 		}
 
 		private void GetContacts()
@@ -108,6 +111,23 @@ namespace MessengerApp
 		public void ChangeContact(int index)
 		{
 			this.currentContact = this.contacts[index];
+		}
+
+		public void LoadChat()
+		{
+			foreach(Message message in messages)
+			{
+				if((currentContact.Users[0] == message.Reciever || currentContact.Users[1] == message.Reciever) 
+					&& (currentContact.Users[0] == message.Sender || currentContact.Users[1] == message.Sender))
+				{
+					chat.Add(message);
+				}
+			}
+		}
+
+		public bool Send(Message message)
+		{
+			return true;
 		}
 
 		public User User
