@@ -20,23 +20,20 @@ namespace MessengerApp
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private Messenger app;
 
-		private string login = "admin";
-		private string password = "12345";
-
-		private List<Contact> contacts;
 		public MainWindow()
 		{
 			InitializeComponent();
 
-
+			app = new Messenger();
 		}
 
 		private void LoginButton_Click(object sender, RoutedEventArgs e)
 		{
-			if(Login(login, password))
+			if(app.Login(LoginBox.Text, PasswordBox.Password))
 			{
-				ChangeScreen(ContactsScreen);
+				Open(ContactsScreen);
 			}
 			else
 			{
@@ -45,19 +42,7 @@ namespace MessengerApp
 			}
 		}
 
-		private bool Login(string login, string password)
-		{
-			if(LoginBox.Text == login && PasswordBox.Password == password)
-			{
-				return true;
-			} 
-			else
-			{
-				return false;
-			}
-		}
-
-		private void ChangeScreen(Border screen)
+		private void Open(Border screen)
 		{
 			LoginScreen.Visibility = Visibility.Hidden;
 			ContactsScreen.Visibility = Visibility.Hidden;
@@ -68,7 +53,15 @@ namespace MessengerApp
 
 		private void ContactsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			if(ContactsList.SelectedIndex >= 0)
+			{
+				app.ChangeContact(ContactsList.SelectedIndex);
+				ContactsList.SelectedIndex = -1;
 
+				app.LoadChat();
+				Open(ChatScreen);
+			}
+			
 		}
 	}
 }
