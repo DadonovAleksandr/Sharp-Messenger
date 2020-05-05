@@ -42,11 +42,9 @@ namespace MessengerApp
 				LoadUsers();
 				user = users[0];
 
+				LoadContacts();
+
 				LoadMessages();
-				
-
-				GetContacts();
-
 				
 				return true;
 			}
@@ -68,49 +66,35 @@ namespace MessengerApp
 		private void LoadMessages()
 		{
 			//Contact 1
-			messages.Add(new Message("Hi!", users[0], users[1], user.ID));
-			messages.Add(new Message("Hello.", users[1], users[0], user.ID));
-			messages.Add(new Message("How are you?", users[0], users[1], user.ID));
-			messages.Add(new Message("Fine.", users[1], users[0], user.ID));
-			messages.Add(new Message("Is everything okay?", users[0], users[1], user.ID));
-			messages.Add(new Message("Yes.", users[1], users[0], user.ID));
-			messages.Add(new Message("Are you sure?", users[0], users[1], user.ID));
-			messages.Add(new Message("Yes.", users[1], users[0], user.ID));
-			messages.Add(new Message("If you say so...", users[0], users[1], user.ID));
-			messages.Add(new Message("Ah! You never cared about me!", users[1], users[0], user.ID));
-			messages.Add(new Message("Forget my number!", users[1], users[0], user.ID));
-			messages.Add(new Message("...", users[0], users[1], user.ID));
+			messages.Add(new Message(1, "Hi!", users[0], users[1], contacts[0], user.ID));
+			messages.Add(new Message(2, "Hello.", users[1], users[0], contacts[0], user.ID));
+			messages.Add(new Message(3, "How are you?", users[0], users[1], contacts[0], user.ID));
+			messages.Add(new Message(4, "Fine.", users[1], users[0], contacts[0], user.ID));
+			messages.Add(new Message(5, "Is everything okay?", users[0], users[1], contacts[0], user.ID));
+			messages.Add(new Message(6, "Yes.", users[1], users[0], contacts[0], user.ID));
+			messages.Add(new Message(7, "Are you sure?", users[0], users[1], contacts[0], user.ID));
+			messages.Add(new Message(8, "Yes.", users[1], users[0], contacts[0], user.ID));
+			messages.Add(new Message(9, "If you say so...", users[0], users[1], contacts[0], user.ID));
+			messages.Add(new Message(10, "Ah! You never cared about me!", users[1], users[0], contacts[0], user.ID));
+			messages.Add(new Message(11, "Forget my number!", users[1], users[0], contacts[0], user.ID));
+			messages.Add(new Message(12, "...", users[0], users[1], contacts[0], user.ID));
 
 			//Contact 2
-			messages.Add(new Message("Hello!", users[0], users[2], user.ID));
-			messages.Add(new Message("Hello!", users[2], users[0], user.ID));
+			messages.Add(new Message(13, "Hello!", users[0], users[2], contacts[1], user.ID));
+			messages.Add(new Message(14, "Hello!", users[2], users[0], contacts[1], user.ID));
 
 			//Contact 3
-			messages.Add(new Message("Hello! My name is John, would you like to see my goods?", users[3], users[0], user.ID));
-			messages.Add(new Message("Um... No, thank you.", users[0], users[3], user.ID));
-			messages.Add(new Message("Sad to hear it. Please contact me, if you change your mind.", users[3], users[0], user.ID));
-			messages.Add(new Message("I will.", users[0], users[3], user.ID));
+			messages.Add(new Message(15, "Hello! My name is John, would you like to see my goods?", users[3], users[0], contacts[0], user.ID));
+			messages.Add(new Message(16, "Um... No, thank you.", users[0], users[3], contacts[0], user.ID));
+			messages.Add(new Message(17, "Sad to hear it. Please contact me, if you change your mind.", users[3], users[0], contacts[0], user.ID));
+			messages.Add(new Message(18, "I will.", users[0], users[3], contacts[0], user.ID));
 		}
 
-		private void GetContacts()
+		private void LoadContacts()
 		{
-			foreach(Message message in messages)
-			{
-				bool getContact = false;
-				foreach (Contact contact in contacts)
-				{
-					if (contact.Confirm(message.Sender, message.Reciever))
-					{
-						getContact = true;
-						break;
-					}
-				}
-
-				if(!getContact)
-				{
-					contacts.Add(new Contact(message.Sender, message.Reciever, user.ID));
-				}
-			}
+			contacts.Add(new Contact(1, users[0], users[1], users[0].ID));
+			contacts.Add(new Contact(2, users[0], users[2], users[0].ID));
+			contacts.Add(new Contact(3, users[0], users[3], users[0].ID));
 		}
 
 		public void ChangeContact(int index)

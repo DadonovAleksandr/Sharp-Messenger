@@ -6,14 +6,16 @@ namespace MessengerApp
 {
 	class Contact
 	{
+		private int id;
 		private User[] users;
 		private string name;
 
-		public Contact(User u1, User u2, int id)
+		public Contact(int id, User u1, User u2, int userId)
 		{
+			this.id = id;
 			users = new User[] { u1, u2 };
 
-			if(id == u1.ID)
+			if(userId == u1.ID)
 			{
 				this.name = u2.Name;
 			}
@@ -40,6 +42,14 @@ namespace MessengerApp
 			get
 			{
 				return users;
+			}
+		}
+
+		public int ID
+		{
+			get
+			{
+				return this.id;
 			}
 		}
 

@@ -96,7 +96,7 @@ namespace MessengerApp
 					reciever = app.CurrentContact.Users[1];
 				}
 
-				Message message = new Message(text, app.User, reciever, app.User.ID);
+				Message message = new Message(0, text, app.User, reciever, app.CurrentContact, app.User.ID);
 
 				bool result = app.Send(message);
 

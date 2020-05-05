@@ -7,19 +7,27 @@ namespace MessengerApp
 {
 	class Message
 	{
+		private int id;
 		private string text;
+
 		private User sender;
 		private User reciever;
+
+		private Contact contact;
+
 		private HorizontalAlignment alignment;
+
 		private DateTime date;
 
-		public Message(string text, User sender, User reciever, int id)
+		public Message(int id, string text, User sender, User reciever, Contact contact, int userId)
 		{
+			this.id = id;
 			this.text = text;
 			this.sender = sender;
 			this.reciever = reciever;
+			this.contact = contact;
 
-			if(id == sender.ID)
+			if(userId == sender.ID)
 			{
 				alignment = HorizontalAlignment.Right;
 			}
@@ -68,6 +76,14 @@ namespace MessengerApp
 			get
 			{
 				return this.reciever;
+			}
+		}
+
+		public int ID
+		{
+			get
+			{
+				return this.id;
 			}
 		}
 	}
