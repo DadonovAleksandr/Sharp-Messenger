@@ -31,46 +31,56 @@ namespace MessengerApp
 			MessagesList.ItemsSource = app.Chat;
 		}
 
+		//Обработчик нажатия на кнопку Login
 		private void LoginButton_Click(object sender, RoutedEventArgs e)
 		{
-			if(app.Login(LoginBox.Text, PasswordBox.Password))
+			//Пока будут использоваться тестовые данные
+			if(LoginBox.Text == "admin" && PasswordBox.Password == "12345")
 			{
+				//Если логин и пароль верные, то переходим на другой экран
 				Open(ContactsScreen);
 			}
 			else
 			{
+				//Иначе выводим сообщение об ошибке авторизации
 				LoginMessageBlock.Text = "Wrong login or password!";
 				LoginMessageBlock.Visibility = Visibility.Visible;
 			}
 		}
 
+		//Метод для окрытия другого экрана
 		private void Open(Border screen)
 		{
+			//Делаем все экраны невидимыми
 			LoginScreen.Visibility = Visibility.Hidden;
 			ContactsScreen.Visibility = Visibility.Hidden;
 			ChatScreen.Visibility = Visibility.Hidden;
 
-			//ContactsList.DataContext = app.Contacts;
-
+			//Делаем видимым необходиый экран
 			screen.Visibility = Visibility.Visible;
 		}
 
-		private void ContactsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			if(ContactsList.SelectedIndex >= 0)
-			{
-				app.ChangeContact(ContactsList.SelectedIndex);
-				ContactsList.SelectedIndex = -1;
+private void ContactsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+	//Метод вызывается, когда меняется индекс выделенного элемента
+	//При выделении элемент списка будет подсвечиваться
+	//Чтобы убрать это, мы будем менять индекс на -1
+	//Чтобы метод не срабатывал повторно, мы будем проверять, чтобы индекс был больше или равен 0
+	if(ContactsList.SelectedIndex >= 0)
+	{
+		//Этот код будет написан позже
+		//app.ChangeContact(ContactsList.SelectedIndex);
+		ContactsList.SelectedIndex = -1;
 
-				app.LoadChat();
+		//app.LoadChat();
 
-				MessagesList.ItemsSource = app.Chat;
-				ChatName.Text = app.CurrentContact.Name;
+		MessagesList.ItemsSource = app.Chat;
+		ChatName.Text = app.CurrentContact.Name;
 
-				Open(ChatScreen);
-			}
-			
-		}
+		Open(ChatScreen);
+	}
+	
+}
 
 		private void SendButton_Click(object sender, RoutedEventArgs e)
 		{

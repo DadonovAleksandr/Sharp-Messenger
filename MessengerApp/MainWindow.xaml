@@ -93,7 +93,7 @@
 				
 			</Style.Setters>
 		</Style>
-		
+
 		<Style x:Key="ContactName" BasedOn="{StaticResource TextBlockBase}">
 			<Style.Setters>
 				<Setter Property="TextBlock.HorizontalAlignment" Value="Left"/>
@@ -155,7 +155,7 @@
 				
 				<Border Grid.Row="1">
 					<ListBox ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" 
-							 Style="{StaticResource ContactsList}" Name="ContactsList" SelectionChanged="ContactsList_SelectionChanged">
+								Style="{StaticResource ContactsList}" Name="ContactsList" SelectionChanged="ContactsList_SelectionChanged">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
 								<ListBoxItem>
